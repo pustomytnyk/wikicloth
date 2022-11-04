@@ -58,7 +58,7 @@ module WikiCloth
     end
 
     def render(opt={})
-      self.options = { :noedit => false, :fast => true, :output => :html, :link_handler => self.link_handler, 
+      self.options = { :noedit => false, :fast => true, :output => :html, :link_handler => self.link_handler,
 	:params => self.params, :sections => self.sections }.merge(self.options).merge(opt)
       self.options[:link_handler].params = options[:params]
 
@@ -88,10 +88,6 @@ module WikiCloth
           else
             data.each_char { |c| add_current_char(buffer,c) }
           end
-        rescue => err
-          debug_tree = buffer.buffers.collect { |b| b.debug }.join("-->")
-          puts I18n.t("unknown error on line", :line => @current_line, :row => @current_row, :tree => debug_tree)
-          raise err
         end
 
         buffer.eof()
